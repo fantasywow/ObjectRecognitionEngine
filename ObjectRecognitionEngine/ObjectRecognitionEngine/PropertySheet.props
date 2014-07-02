@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>opencv_core248d.lib;opencv_features2d248d.lib;opencv_highgui248d.lib;opencv_imgproc248d.lib;opencv_calib3d248d.lib;opencv_nonfree248d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core248d.lib;opencv_features2d248d.lib;opencv_highgui248d.lib;opencv_imgproc248d.lib;opencv_calib3d248d.lib;opencv_nonfree248d.lib;opencv_flann248d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
