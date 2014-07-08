@@ -9,6 +9,10 @@
 using namespace cv;
 using namespace std;
 
+
+#include "leveldb/db.h"
+#pragma comment(lib, "Shlwapi")
+
 void harissTest(Mat &image){
 	Mat cornerStrength;
 	
@@ -126,7 +130,25 @@ void FLANNMatchTest(Mat &image1, Mat &image2){
 }
 
 
+void leveldbtest(){
+	leveldb::DB* db;
+	leveldb::Options options;
+	options.create_if_missing = true;
+	std::string dbpath = "testdb";
+	leveldb::Status status = leveldb::DB::Open(options, dbpath, &db);
+	assert(status.ok());
+	std::string key1 = "lyc";
+	std::string key2 = "liyc7711@gamil.com";
+	cout << "Open db OK" << std::endl;
 
+	std::string value;
+	leveldb::Status s;
+	s = db->Put(leveldb::WriteOptions(), key1, key2);/*key1和key2作为一对key-value对插入*/
+	s = db->Get(leveldb::ReadOptions(), key1, &value);/*根据key返回对应的value值*/
+
+	cout << value << std::endl;
+	delete db;/*删除数据库*/
+}
 
 
 int main(){
@@ -137,8 +159,8 @@ int main(){
 	//harissTest(image);
 	//FASTTest(image);
 	//SURFTest(image);
-	FLANNMatchTest(image, image);
-
+	//FLANNMatchTest(image, image);
+	leveldbtest(); 
 	//duration =(static_cast<double>(getTickCount()) - duration)*1000;
 	//duration /= getTickFrequency();
 
@@ -146,6 +168,6 @@ int main(){
 
 
 	//imshow("my image", image);
-	waitKey(100000);
+	//waitKey(100000);
 	return 1;
 }
